@@ -1,0 +1,14 @@
+.center {
+    padding: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.body{
+    background-image: linear-gradient(to right top, #3a5ba0, #3a5ba0, #3a5ba0, #3a5ba0, #3a5ba0);
+    height: auto;
+    width: auto;
+}
