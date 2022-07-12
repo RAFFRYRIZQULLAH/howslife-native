@@ -151,7 +151,7 @@
         <div class="page-container" style="background-color: #3A5BA0;">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop" style="background-color: #FFE5B4; height: auto;">
-                <h1 style="text-align: center; font-size: 70px;">HOWSLIFE </h1>
+                <h1 style="text-align: center; font-size: 70px;">HOW'S  LIFE </h1>
             </header>
             <!-- HEADER DESKTOP-->
 
@@ -161,11 +161,11 @@
                     <div class="container-fluid">
                         
                         <div class="row">
-                            <div class="col-lg-12" style="padding-bottom:90%;">
+                            <div class="col-lg-12" style="padding-bottom: 100%;">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Subjek Masalah</h3>
-                                        <canvas id="sales-chart"></canvas>
+                                        <h3 class="title-10 m-b-40">Bar chart Subjek Masalah</h3>
+                                        <canvas id="mybarChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -198,11 +198,47 @@
     <script src="vendor/circle-progress/circle-progress.min.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+
+    <script>
+        const ctx = document.getElementById('mybarChart');
+        const mybarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Keluarga', 'Percintaan', 'Pendidikan', 'Pribadi', 'Lainya'],
+                datasets: [{
+                    label: 'SUBJEK MASALAH',
+                    data: [750, 190, 300, 500, 360],
+                    backgroundColor: [
+                        '#47B5FF',
+                        '#47B5FF',
+                        '#47B5FF',
+                        '#47B5FF',
+                        '#47B5FF'
+                    ],
+                    borderColor: [
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
 
 </body>
 
