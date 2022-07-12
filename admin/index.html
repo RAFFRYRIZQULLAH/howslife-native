@@ -168,7 +168,7 @@
                                             <div>
                                                 <h3>Jumlah Permintaan Pasien</h3>
                                                 <div class="icon" style="padding: 12%;">
-                                                    <i class="zmdi zmdi-account-o" style="color: black;">100</i>
+                                                    <i id="jumlahPermintaan" class="zmdi zmdi-account-o" style="color: black;">-</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,9 +182,9 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix" style="text-align: center;">
                                             <div>
-                                                <h3>Jumlah Permintaan Pasien</h3>
+                                                <h3>Jumlah Pasien Terdaftar</h3>
                                                 <div class="icon" style="padding: 12%;">
-                                                    <i class="zmdi zmdi-account-o" style="color: black;">100</i>
+                                                    <i id="jumlahPasien" class="zmdi zmdi-account-o" style="color: black;">-</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,9 +198,9 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix" style="text-align: center;">
                                             <div>
-                                                <h3>Jumlah Permintaan Pasien</h3>
+                                                <h3>Jumlah Konselor Terdaftar</h3>
                                                 <div class="icon" style="padding: 12%;">
-                                                    <i class="zmdi zmdi-account-o" style="color: black;">100</i>
+                                                    <i id="jumlahKonselor" class="zmdi zmdi-account-o" style="color: black;">-</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -589,6 +589,10 @@
         </div>
 
     </div>
+
+    <!-- connect BE  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./API/dashboard.js"></script>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
