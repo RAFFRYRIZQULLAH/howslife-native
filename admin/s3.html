@@ -162,11 +162,11 @@
                         
                         <div class="row">
                             
-                            <div class="col-lg-12" style="padding-bottom:90%;">
+                            <div class="col-lg-10" style="padding-bottom:90%;">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
                                         <h3 class="title-2 m-b-40">Umur Pasien</h3>
-                                        <canvas id="team-chart"></canvas>
+                                        <canvas id="myChart" width="400" height="200"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +205,45 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['10-15 th', '15-20 th', '20-25 th', '25-30 th', '30-35 th', '35-40 th'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [67, 30, 45, 68, 23, 38],
+                    backgroundColor: [
+                        '#F9ED69',
+                        '#F08A5D',
+                        '#B83B5E',
+                        '#6A2C70',
+                        '#F38181',
+                        '#3F72AF'
+                    ],
+                    borderColor: [
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white'
+                        
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
 
 </body>
 

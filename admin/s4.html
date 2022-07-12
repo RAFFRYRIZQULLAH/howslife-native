@@ -162,11 +162,11 @@
                         
                         <div class="row">
                             
-                            <div class="col-lg-12" style="padding-bottom:90%;">
+                            <div class="col-lg-10" style="padding-bottom:90%;">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
                                         <h3 class="title-2 m-b-40">Fakultas</h3>
-                                        <canvas id="lineChart"></canvas>
+                                        <canvas id="myChart" width="400" height="200"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +205,43 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['MIPA', 'Teknologi Industri', 'Hukum', 'Kedokteran', 'Bisnis dan Ekonomi', 'Teknik Sipil Dan perencanaan'],
+                datasets: [{
+                    label: 'Fakultas',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        '#fd0363',
+                        '#cc095d',
+                        '#9c1057',
+                        '#6b1650',
+                        '#3b1d4a',
+                        '#0a2344'
+                    ],
+                    borderColor: [
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
 
 </body>
 

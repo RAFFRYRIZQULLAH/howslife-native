@@ -162,11 +162,11 @@
                         
                         <div class="row">
                             
-                            <div class="col-lg-12" style="padding-bottom:90%;">
+                            <div class="col-lg-10" style="padding-bottom:90%;">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
                                         <h3 class="title-2 m-b-40">Konsultasi</h3>
-                                        <canvas id="radarChart"></canvas>
+                                        <canvas id="myChart" width="400" height="200"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +205,37 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sedang Berlangsung', 'Sudah Selesai'],
+                datasets: [{
+                    label: 'StatusKonsultasi',
+                    data: [30, 70],
+                    backgroundColor: [
+                        '#adff02',
+                        '#8f00ff'
+                    
+                    ],
+                    borderColor: [
+                        'white',
+                        'white'
+                    
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
 
 </body>
 
