@@ -206,36 +206,48 @@
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
+    <!-- axios  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
-        const ctx = document.getElementById('polarArea');
-        const polarArea = new Chart(ctx, {
-            type: 'polarArea',
-            data: {
-                labels: ['Laki Laki', 'Perempuan'],
-                datasets: [{
-                    label: 'SUBJEK MASALAH',
-                    data: [35, 65],
-                    backgroundColor: [
-                        'red',
-                        'yellow'
-                        
-                    ],
-                    borderColor: [
-                        'white',
-                        'white'
-                        
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        const getData = async () => {
+            const ctx = document.getElementById('polarArea');
+            try {
+                const { data } = await axios.get('https://howslifeapi.herokuapp.com/api/v1/admin/statistik/pasienkelamin', ) 
+                             
+                const polarArea = new Chart(ctx, {
+                    type: 'polarArea',
+                    data: {
+                        labels: ['Laki Laki', 'Perempuan'],
+                        datasets: [{
+                            label: 'SUBJEK MASALAH',
+                            data: [data.data.laki, data.data.perempuan],
+                            backgroundColor: [
+                                'red',
+                                'yellow'
+                                
+                            ],
+                            borderColor: [
+                                'white',
+                                'white'
+                                
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
                     }
-                }
+                });
+            } catch (error) {
+                ctx.parentElement.innerHTML = `<p>${error}  ${error.response.data} 😥</p>`
             }
-        });
+        }
+        getData()
         </script>
 
 </body>

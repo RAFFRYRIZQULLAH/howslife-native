@@ -69,7 +69,7 @@ const getAllData = async () => {
             const kelamin = ringkasan[1].jenis_kelamin
             const haveTimeMatch = ringkasan[2].haveTimeMatch?'&#10004':'&#10006'
             const time = ringkasan[2].time || ' -'
-            const link = 'https://howslifeapi.herokuapp.com/api/v1/konsultasi/20/request/' + konselorID
+            const link = `https://howslifeapi.herokuapp.com/api/v1/konsultasi/${id}/request/` + konselorID
             return `
             <div class="card ">
                 <div class="card-body">
@@ -110,9 +110,10 @@ const getAllData = async () => {
                         </div>
                     </div>                                                    
                     <div class="card-text text-sm-center mt-2">
-                        <a href="${link}">
-                            <button type="button" class="btn btn-info bg-info">Request</button>
-                        </a>
+                        <form  class="requestForm">       
+                            <p hidden>${link}</p>                                      
+                            <button type="submit" class="btn btn-info bg-info">Request</button>                        
+                        </form>                        
                     </div>
                 </div>
             </div>
@@ -121,7 +122,24 @@ const getAllData = async () => {
         }).join('')
 
         daftarKonselorParent.innerHTML = allKonselor
+        const requestForm = document.querySelectorAll('.requestForm')
+        console.log(requestForm);
+        requestForm.forEach((iter) => {
+            console.log(iter);
+            console.log(iter.children[0].innerHTML );
+            iter.addEventListener('submit', async (e) => {
+                e.preventDefault()
+                try{
+                    const respon = await axios.post(iter.children[0].innerHTML, )
+                    alert(respon.data.message)
+                }catch(error){
+                    alert("Hello " + error)
 
+                }
+            })
+           
+        })
+        
 
 
 
@@ -132,4 +150,6 @@ const getAllData = async () => {
     }
 }
 
-getAllData();
+ getAllData();
+
+

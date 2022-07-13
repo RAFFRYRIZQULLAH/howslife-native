@@ -205,36 +205,56 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const ctx = document.getElementById('myChart');
-        const myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Sedang Berlangsung', 'Sudah Selesai'],
-                datasets: [{
-                    label: 'StatusKonsultasi',
-                    data: [30, 70],
-                    backgroundColor: [
-                        '#adff02',
-                        '#8f00ff'
-                    
-                    ],
-                    borderColor: [
-                        'white',
-                        'white'
-                    
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        const getData = async() => {
+            try {
+                const { data } = await axios.get('https://howslifeapi.herokuapp.com/api/v1/admin/dashboard', )
+                const {konsultasi, user, subjectMasalah} = data.data;
+                const {keluarga, percintaan, pendidikan, pribadi, lainnya} = subjectMasalah
+                const {waiting, scheduled, canceled, finished} = konsultasi
+                console.log(waiting, scheduled, canceled, finished);
+                const myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Menunggu Jadwal', 'Terjadwal', 'Dibatalkan', 'Telah Selesai'],
+                    datasets: [{
+                        label: 'StatusKonsultasi',
+                        data: [waiting, scheduled, canceled, finished],
+                        backgroundColor: [
+                            '#adff02',
+                            '#8f00ff',
+                            '#fd0363',
+                            '#cc095d',
+          
+                        
+                        ],
+                        borderColor: [
+                            'white',
+                            'white',
+                            'white',
+                            'white'
+                        
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
+            });
+            } catch (error) {                
+                ctx.parentElement.innerHTML = `<p>${error}  ${error.response.data} 😥</p>`
             }
-        });
+        }
+
+        getData()        
+        
         </script>
 
 </body>
