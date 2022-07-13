@@ -204,42 +204,58 @@
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
-    <script>
-        const ctx = document.getElementById('mybarChart');
-        const mybarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Keluarga', 'Percintaan', 'Pendidikan', 'Pribadi', 'Lainya'],
-                datasets: [{
-                    label: 'SUBJEK MASALAH',
-                    data: [750, 190, 300, 500, 360],
-                    backgroundColor: [
-                        '#47B5FF',
-                        '#47B5FF',
-                        '#47B5FF',
-                        '#47B5FF',
-                        '#47B5FF'
-                    ],
-                    borderColor: [
-                        'white',
-                        'white',
-                        'white',
-                        'white',
-                        'white'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        </script>
+    <!-- axios  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <script>
+        const getData = async() => {
+            const ctx = document.getElementById('mybarChart');
+            try {
+                const { data } = await axios.get('https://howslifeapi.herokuapp.com/api/v1/admin/dashboard', )
+                const {konsultasi, user, subjectMasalah} = data.data;
+                const {keluarga, percintaan, pendidikan, pribadi, lainnya} = subjectMasalah
+                
+                const mybarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Keluarga', 'Percintaan', 'Pendidikan', 'Pribadi', 'Lainya'],
+                        datasets: [{
+                            label: 'SUBJEK MASALAH',
+                            data: [keluarga, percintaan, pendidikan, pribadi, lainnya],
+                            backgroundColor: [
+                                '#47B5FF',
+                                '#47B5FF',
+                                '#47B5FF',
+                                '#47B5FF',
+                                '#47B5FF'
+                            ],
+                            borderColor: [
+                                'white',
+                                'white',
+                                'white',
+                                'white',
+                                'white'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+                ctx.parentElement.innerHTML = `<p>${error}  ${error.response.data} 😥</p>`
+            }
+        }
+
+        getData()
+        </script>
+    
 </body>
 
 </html>
